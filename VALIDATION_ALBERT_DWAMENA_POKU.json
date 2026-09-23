@@ -1,0 +1,21 @@
+{
+  "validation": "PASSED",
+  "mode": "smoke test (3-fold CV for Scripts 1 and 3 only)",
+  "scripts_passed": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "7",
+    "8"
+  ],
+  "script6": "EXPECTED NOT RUN until REG_PARAMS and FEATURE_REFINEMENT_K are supplied",
+  "packaged_dataset_rows": {
+    "UCI": 4424,
+    "Ghanaian_institutional": 320,
+    "Lecturer_analytical_file": 350
+  },
+  "note": "Normal execution uses configured 10-fold CV; smoke mode exists only to verify portability and artifact contracts."
+}
