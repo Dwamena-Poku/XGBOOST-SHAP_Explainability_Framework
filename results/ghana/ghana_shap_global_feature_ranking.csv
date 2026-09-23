@@ -1,0 +1,7 @@
+Feature,MeanAbsSHAP
+num__20(20),1.4022411
+cat__CourseCode_DHO129,0.904864
+cat__CourseCode_DBA209,0.2379346
+cat__CourseCode_BASM205,0.20540106
+cat__CourseCode_DEM101,0.052794505
+cat__CourseCode_DPR101,0.04482018
