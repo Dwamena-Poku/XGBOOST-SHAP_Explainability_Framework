@@ -1,3 +1,5 @@
+**Verification status: PARTIAL.** See `RELEASE_VERIFICATION_STATUS.md`. The lecturer data provenance and full end-to-end rerun remain unresolved.
+
 # Albert Dwamena-Poku — XGBoost/SHAP reproducibility repository
 
 **Study:** *An XGBoost-SHAP Explainability Framework for Teacher-Centred Classroom Decision Support in Ghanaian Higher Education*  

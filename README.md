@@ -1,3 +1,9 @@
+# Albert Dwamena-Poku — XGBoost–SHAP research repository
+
+**Verification status: PARTIAL — NOT SUPERVISOR-CLEARED (5 November 2026).** See [RELEASE_VERIFICATION_STATUS.md](RELEASE_VERIFICATION_STATUS.md) and run `python VERIFY_RELEASE.py` for stored-artifact checks. These checks do not substitute for full model reruns.
+
+**Privacy:** This local review archive contains case-level lecturer/institutional data. Do not publish the data or push the repository publicly without ethics and data-release approval.
+
 # Albert Dwamena-Poku — XGBoost/SHAP reproducibility repository
 
 **Study:** *An XGBoost-SHAP Explainability Framework for Teacher-Centred Classroom Decision Support in Ghanaian Higher Education*  

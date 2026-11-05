@@ -4,7 +4,7 @@ Dep. Variable:     Human-AI Collaboration   R-squared:                       0.5
 Model:                                OLS   Adj. R-squared:                  0.569
 Method:                     Least Squares   F-statistic:                     52.19
 Date:                    Thu, 05 Nov 2026   Prob (F-statistic):           7.48e-59
-Time:                            05:45:26   Log-Likelihood:                -70.390
+Time:                            08:30:03   Log-Likelihood:                -70.390
 No. Observations:                     350   AIC:                             160.8
 Df Residuals:                         340   BIC:                             199.4
 Df Model:                               9                                         
