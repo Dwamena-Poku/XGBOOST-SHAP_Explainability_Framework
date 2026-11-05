@@ -3,7 +3,9 @@ ANCHOR: REM-ALBERT_DWAMENA_POKU-2026-08-26
 Writes fold scores as plain Python floats (logic bug fixed).
 """
 from pathlib import Path
-import json, joblib, platform
+import json, joblib, platform, os
+from ALBERT_DWAMENA_POKU_COMMON import *  # first, so explicit imports below win
+from sklearn.base import clone
 import numpy as np, pandas as pd
 from sklearn.model_selection import train_test_split, StratifiedKFold, cross_validate
 from sklearn.compose import ColumnTransformer
@@ -17,7 +19,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, average_precision_score
 from xgboost import XGBClassifier
-from ALBERT_DWAMENA_POKU_COMMON import *
 
 ROOT=root_from_script(__file__); D=dirs(ROOT)
 SCHEMA_PATH=D['artifacts']/'script0_schema.json'
@@ -27,7 +28,7 @@ cfg=load_json(SCHEMA_PATH); require_no_fillins(cfg, 'Script 0 schema')
 DATA_PATH=resolve_data_path(ROOT,cfg['student_dataset_path'])
 TARGET=cfg['target_column']; POSITIVE=cfg.get('positive_class',1)
 ID_COLS=cfg.get('id_columns',[]); CAT_COLS=cfg.get('categorical_columns',[]); NUM_COLS=cfg.get('numeric_columns',[])
-TEST_SIZE=float(cfg.get('test_size',0.20)); RANDOM_STATE=int(cfg.get('random_state',42)); import os
+TEST_SIZE=float(cfg.get('test_size',0.20)); RANDOM_STATE=int(cfg.get('random_state',42))
 N_SPLITS=3 if os.environ.get('ALBERT_SMOKE_TEST')=='1' else int(cfg.get('cv_folds',10))
 
 df=load_table(DATA_PATH)
@@ -55,7 +56,7 @@ scoring={'accuracy':'accuracy','precision':'precision','recall':'recall','f1':'f
 cv=StratifiedKFold(n_splits=N_SPLITS,shuffle=True,random_state=RANDOM_STATE)
 fold_rows=[]; metric_rows=[]
 for name,model in models.items():
-    pipe=Pipeline([('pre',pre),('smote',SMOTE(random_state=RANDOM_STATE)),('model',model)])
+    pipe=Pipeline([('pre',clone(pre)),('smote',SMOTE(random_state=RANDOM_STATE)),('model',model)])
     pipe.fit(Xtr,ytr)
     pred=pipe.predict(Xte); prob=pipe.predict_proba(Xte)[:,1]
     joblib.dump(pipe,D['artifacts']/f'script1_model_{name}.joblib')

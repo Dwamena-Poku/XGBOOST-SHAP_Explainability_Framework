@@ -8,6 +8,8 @@ contract=load_json(D['artifacts']/'script1_contract.json'); pipe=joblib.load(D['
 splits=pd.read_csv(D['artifacts']/'script1_split_indices.csv'); te=splits['test_index'].dropna().astype(int).to_numpy(); Xte=X.iloc[te]
 Xt=pipe.named_steps['pre'].transform(Xte); names=contract['feature_names']; model=pipe.named_steps['model']
 expl=shap.TreeExplainer(model); sv=expl(Xt)
+pd.DataFrame(sv.values,columns=names).assign(row_index=te).to_csv(D['artifacts']/'script5_per_student_shap_matrix.csv',index=False)
+pd.DataFrame({'row_index':te,'base_value':np.asarray(sv.base_values).reshape(-1),'model_margin':np.asarray(sv.base_values).reshape(-1)+np.asarray(sv.values).sum(axis=1)}).to_csv(D['artifacts']/'script5_shap_additivity.csv',index=False)
 meanabs=np.abs(sv.values).mean(axis=0); rank=pd.DataFrame({'feature':names,'mean_abs_shap':meanabs}).sort_values('mean_abs_shap',ascending=False); rank.to_csv(D['results']/'script5_shap_ranking_encoded.csv',index=False)
 shap.summary_plot(sv.values,Xt,feature_names=names,show=False); plt.tight_layout(); plt.savefig(D['figures']/'shap_beeswarm.png',dpi=300,bbox_inches='tight'); plt.close()
 shap.summary_plot(sv.values,Xt,feature_names=names,plot_type='bar',show=False); plt.tight_layout(); plt.savefig(D['figures']/'shap_global_bar.png',dpi=300,bbox_inches='tight'); plt.close()

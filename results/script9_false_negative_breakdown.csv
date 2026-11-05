@@ -1,0 +1,14 @@
+feature,level,false_negative_count
+Tuition fees up to date,1,60
+Tuition fees up to date,0,3
+Scholarship holder,0,50
+Scholarship holder,1,13
+Debtor,0,58
+Debtor,1,5
+Gender,0,33
+Gender,1,30
+age_band,<=20,41
+age_band,21-25,13
+age_band,26-30,5
+age_band,31-40,3
+age_band,41+,1

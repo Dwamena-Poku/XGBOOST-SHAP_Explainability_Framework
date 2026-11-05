@@ -25,12 +25,12 @@ for metric in METRICS:
         if len(x)!=len(y) or len(x)<2: raise ValueError(f'Fold count mismatch for {a} vs {b}, metric={metric}')
         d=x-y; k=len(d); mean=float(d.mean()); s2=float(d.var(ddof=1))
         # Nadeau-Bengio corrected resampled t-test variance: (1/k + n_test/n_train)*s_d^2
-        correction=(1/k)+(test_size/train_size)
+        correction=(1/k)+(1/(k-1))  # validation fold / training folds = 1/9 for k=10
         se=math.sqrt(correction*s2) if s2>0 else 0.0
         t=mean/se if se>0 else (np.inf if mean!=0 else 0.0)
         p=2*stats.t.sf(abs(t),df=k-1) if np.isfinite(t) else 0.0
         naive=stats.ttest_rel(x,y).pvalue
-        rows.append({'metric':metric,'model_a':a,'model_b':b,'mean_difference':mean,'naive_p':float(naive),'nadeau_bengio_t':float(t),'nadeau_bengio_p':float(p),'folds':k,'correction_factor':float(correction)})
+        rows.append({'metric':metric,'model_a':a,'model_b':b,'mean_difference':mean,'naive_p':float(naive),'nadeau_bengio_t':float(t),'nadeau_bengio_p':float(p),'folds':k,'correction_factor':float(correction),'test_family':'all 6 metrics x all 6 pairwise model comparisons (36 tests)'})
 r=pd.DataFrame(rows)
 if len(r):
     rej,pholm,_,_=multipletests(r['nadeau_bengio_p'].to_numpy(),method='holm'); r['holm_p']=pholm; r['holm_reject_0_05']=rej

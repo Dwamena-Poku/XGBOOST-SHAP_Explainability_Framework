@@ -12,6 +12,7 @@ This is a newly explicit Phase-3 specification for this rerun; it must not be
 misdescribed as having been part of an earlier approved methodology.
 """
 import json, joblib
+from ALBERT_DWAMENA_POKU_COMMON import *  # first, so later explicit imports win
 import numpy as np, pandas as pd
 from functools import partial
 from sklearn.compose import ColumnTransformer
@@ -24,7 +25,6 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from imblearn.pipeline import Pipeline
 from imblearn.over_sampling import SMOTE
 from xgboost import XGBClassifier
-from ALBERT_DWAMENA_POKU_COMMON import *
 
 ROOT=root_from_script(__file__); D=dirs(ROOT)
 cfg=load_json(D['artifacts']/'script0_schema.json'); require_no_fillins(cfg,'Script 0 schema')
@@ -57,7 +57,7 @@ pd.DataFrame([metrics]).to_csv(D['results']/'script6_phase3_heldout_metrics.csv'
 pd.DataFrame({'row_index':te_idx,'y_true':yte.to_numpy(),'y_pred':pred,'y_prob':prob}).to_csv(D['artifacts']/'script6_phase3_predictions.csv',index=False)
 joblib.dump(pipe,D['artifacts']/'script6_model_engineered_xgboost.joblib')
 
-tn,fp,fn,tp=confusion_matrix(yte,pred).ravel()
+tn,fp,fn,tp=confusion_matrix(yte,pred,labels=[0,1]).ravel()
 pd.DataFrame([{'tn':int(tn),'fp':int(fp),'fn':int(fn),'tp':int(tp)}]).to_csv(D['results']/'script6_phase3_confusion_counts.csv',index=False)
 
 cv=StratifiedKFold(n_splits=int(cfg.get('cv_folds',10)),shuffle=True,random_state=seed)
@@ -72,8 +72,10 @@ pd.DataFrame([row]).to_csv(D['results']/'script6_phase3_fold_scores.csv',index=F
 # Audit selected transformed features from the final held-out fit.
 feature_names=np.asarray(pipe.named_steps['pre'].get_feature_names_out(),dtype=object)
 mask=pipe.named_steps['select'].get_support()
+K_EFFECTIVE=int(mask.sum())
+if K_EFFECTIVE<FEATURE_REFINEMENT_K: print(f'WARNING: only {K_EFFECTIVE} transformed features available; k={FEATURE_REFINEMENT_K} was not reached')
 pd.DataFrame({'selected_feature':feature_names[mask]}).to_csv(D['results']/'script6_phase3_selected_features.csv',index=False)
 status={'arm':'Phase 3 engineered XGBoost','status':'COMPLETE','REG_PARAMS':json.dumps(REG_PARAMS,sort_keys=True),
-        'FEATURE_REFINEMENT_K':FEATURE_REFINEMENT_K,'split_source':'script1_split_indices.csv','n_train':len(tr_idx),'n_test':len(te_idx)}
+        'FEATURE_REFINEMENT_K':FEATURE_REFINEMENT_K,'K_EFFECTIVE':K_EFFECTIVE,'split_source':'script1_split_indices.csv','n_train':len(tr_idx),'n_test':len(te_idx)}
 pd.DataFrame([status]).to_csv(D['results']/'script6_phase3_status.csv',index=False)
 print('SCRIPT 6 COMPLETE:', metrics)

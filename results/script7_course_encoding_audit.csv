@@ -1,0 +1,2 @@
+check,passed,n_course_encoded_columns
+Course encoded as one-hot levels,True,17

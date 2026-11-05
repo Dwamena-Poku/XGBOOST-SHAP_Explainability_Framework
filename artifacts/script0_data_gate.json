@@ -1,0 +1,12 @@
+{
+  "anchor": "REM-ALBERT_DWAMENA_POKU-2026-08-26",
+  "student_rows": 4424,
+  "student_columns": 37,
+  "teacher_file_loads": true,
+  "teacher_rows": 350,
+  "institutional_file_loads": true,
+  "institutional_rows": 320,
+  "student_sha256": "1b1cef8ac84b532c1124123c060f2da6da7ba9bfec54f4b3713dc31f1610340c",
+  "teacher_sha256": "53f71450b1c8be35d538a925ac0bb64ca1f62aa739ba27d3f779f05d207a63d1",
+  "institutional_sha256": "a53c1d2c2716a39b32d0f12b0674d4e88c13d770a7dbbd47cfe4d87a7ee18e71"
+}

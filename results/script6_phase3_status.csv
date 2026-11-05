@@ -1,0 +1,2 @@
+arm,status,REG_PARAMS,FEATURE_REFINEMENT_K,K_EFFECTIVE,split_source,n_train,n_test
+Phase 3 engineered XGBoost,COMPLETE,"{""gamma"": 0.1, ""min_child_weight"": 3.0, ""reg_alpha"": 0.1, ""reg_lambda"": 2.0}",20,20,script1_split_indices.csv,3539,885

@@ -1,0 +1,5 @@
+model,best_cv_auc_pr,best_params
+logistic_regression,0.8807507255208558,"{""model__C"": 0.1}"
+decision_tree,0.7954197310852928,"{""model__max_depth"": 5}"
+random_forest,0.8761340951105915,"{""model__n_estimators"": 400}"
+xgboost,0.8663910612448289,"{""model__n_estimators"": 200}"

@@ -2,11 +2,14 @@
 ANCHOR: REM-ALBERT_DWAMENA_POKU-2026-08-26
 ALBERT DWAMENA-POKU ONLY.
 """
+import json
+from pathlib import Path
 from ALBERT_DWAMENA_POKU_COMMON import *
+ANCHOR='REM-ALBERT_DWAMENA_POKU-2026-08-26'
 ROOT=root_from_script(__file__); D=dirs(ROOT)
-student_path=r"C:\Users\GODLY VIEW COMPUTERS\Documents\THESIS 2026\XGBOOST-SHAP_Explainability_Framework-main\data\ALBERT_DWAMENA_POKU_UCI_STUDENT_DATA.csv"
-teacher_path=r"C:\Users\GODLY VIEW COMPUTERS\Documents\THESIS 2026\XGBOOST-SHAP_Explainability_Framework-main\data\ALBERT_DWAMENA_POKU_TEACHER_TRUST_DATA.csv"
-institutional_path=r"C:\Users\GODLY VIEW COMPUTERS\Documents\THESIS 2026\XGBOOST-SHAP_Explainability_Framework-main\data\ALBERT_DWAMENA_POKU_GHANA_INSTITUTIONAL_DATA.csv"
+student_path=ROOT/'data'/'ALBERT_DWAMENA_POKU_UCI_STUDENT_DATA.csv'
+teacher_path=ROOT/'data'/'ALBERT_DWAMENA_POKU_TEACHER_TRUST_DATA.csv'
+institutional_path=ROOT/'data'/'ALBERT_DWAMENA_POKU_GHANA_INSTITUTIONAL_DATA.csv'
 for p in [student_path, teacher_path, institutional_path]:
     if not p.exists(): raise FileNotFoundError(f'Missing required dataset: {p}')
 df=load_table(student_path)
