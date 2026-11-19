@@ -6,10 +6,10 @@ predictions logistic_regression,True,885
 predictions decision_tree,True,885
 predictions random_forest,True,885
 predictions xgboost,True,885
-tuning ten folds,True,"[{'model': 'logistic_regression', 'best_cv_auc_pr': 0.8808006083367301}, {'model': 'decision_tree', 'best_cv_auc_pr': 0.7954197310852928}, {'model': 'random_forest', 'best_cv_auc_pr': 0.874391430824849}, {'model': 'xgboost', 'best_cv_auc_pr': 0.8814514480239037}]"
-SHAP ranking,True,"[{'source_feature': 'Curricular units 2nd sem (approved)', 'mean_abs_shap': 1.3478694040710746, 'rank': 1}, {'source_feature': 'Tuition fees up to date', 'mean_abs_shap': 0.5300847546045201, 'rank': 2}, {'source_feature': 'Curricular units 1st sem (approved)', 'mean_abs_shap': 0.4380849964790962, 'rank': 3}, {'source_feature': 'Course', 'mean_abs_shap': 0.2799540703018662, 'rank': 4}, {'source_feature': 'Age at enrollment', 'mean_abs_shap': 0.2757317576941249, 'rank': 5}]"
-NB 10-fold factor,True,0.2111111111111111
+tuning ten folds,False,"[{'model': 'logistic_regression', 'best_cv_auc_pr': 0.8770153923191959}, {'model': 'decision_tree', 'best_cv_auc_pr': 0.7732094856733313}, {'model': 'random_forest', 'best_cv_auc_pr': 0.8719988907496136}, {'model': 'xgboost', 'best_cv_auc_pr': 0.8716225370101128}]"
+SHAP ranking,True,"[{'source_feature': 'Curricular units 2nd sem (approved)', 'mean_abs_shap': 1.3478693915936748, 'rank': 1}, {'source_feature': 'Tuition fees up to date', 'mean_abs_shap': 0.5300847430579657, 'rank': 2}, {'source_feature': 'Curricular units 1st sem (approved)', 'mean_abs_shap': 0.4380850049694919, 'rank': 3}, {'source_feature': 'Course', 'mean_abs_shap': 0.279954066597181, 'rank': 4}, {'source_feature': 'Age at enrollment', 'mean_abs_shap': 0.2757317625945763, 'rank': 5}]"
+NB 10-fold factor,False,0.8333333333333333
 Holm family,True,36
-phase3 metric/confusion consistency,True,"{'model': 'engineered_xgboost', 'accuracy': 0.8813559322033898, 'precision': 0.8403041825095057, 'recall': 0.778169014084507, 'f1': 0.8080438756855576, 'roc_auc': 0.9169225000585878, 'auc_pr': 0.891075994959319}"
-lecturer correlation,True,"{'pair': 'SHAP Explanation Clarity vs Teacher Trust', 'r': 0.6128301429330643, 'p': 1.806127988094248e-37, 'n': 350, 'r_squared': 0.37556078408736}"
+phase3 metric/confusion consistency,True,"{'model': 'engineered_xgboost', 'accuracy': 0.8813559322033898, 'precision': 0.842911877394636, 'recall': 0.7746478873239436, 'f1': 0.8073394495412844, 'roc_auc': 0.914473530032106, 'auc_pr': 0.8866063334038339}"
+lecturer correlation,True,"{'pair': 'SHAP Explanation Clarity vs Teacher Trust', 'r': 0.6128301429330643, 'p': 1.806127988094251e-37, 'n': 350, 'r_squared': 0.37556078408736}"
 lecturer predictor count,True,9 predictors + intercept; thesis 8-predictor specification differs

@@ -1,5 +1,5 @@
 model,best_cv_auc_pr,best_params,cv_folds,candidate_count,smoke_test,lr_solver
-logistic_regression,0.8808006083367301,"{""model__C"": 0.1}",10,2,False,lbfgs
-decision_tree,0.7954197310852928,"{""model__max_depth"": 5}",10,2,False,
-random_forest,0.874391430824849,"{""model__n_estimators"": 400}",10,2,False,
-xgboost,0.8814514480239037,"{""model__n_estimators"": 300}",10,2,False,
+logistic_regression,0.8770153923191959,"{""model__C"": 1.0}",3,2,True,lbfgs
+decision_tree,0.7732094856733313,"{""model__max_depth"": 5}",3,2,True,
+random_forest,0.8719988907496136,"{""model__n_estimators"": 400}",3,2,True,
+xgboost,0.8716225370101128,"{""model__n_estimators"": 300}",3,2,True,

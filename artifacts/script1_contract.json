@@ -248,6 +248,6 @@
   "n_train": 3539,
   "n_test": 885,
   "seed": 42,
-  "cv_folds": 10,
+  "cv_folds": 3,
   "dataset_sha256": "1b1cef8ac84b532c1124123c060f2da6da7ba9bfec54f4b3713dc31f1610340c"
 }
